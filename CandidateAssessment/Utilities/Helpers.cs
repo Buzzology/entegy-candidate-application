@@ -8,12 +8,15 @@ namespace CandidateAssessment.Utilities
         /* Convert the provided number to words: https://stackoverflow.com/a/1691675/522859 */
         public static string NumberToWords(long input)
         {
+            // Verify valid arguments
             if (input < 0) throw new ArgumentException($"Input must be greater than or equal to zero: ${input}");
             if (input > ChequeConfiguration.MaximumChequeAmount) throw new ArgumentException($"Input must be less than or equal to ${ChequeConfiguration.MaximumChequeAmount}: ${input}");
 
+            // Recursively convert numbers to words
             if (input < 20) return NumberWords.ZeroToNineteen[input];
             if (input < 100) return $"{NumberWords.Tens[((int)input / 10) - 1]} {NumberToWords(input % 10)}";
-            //if (input < 999) return $"{NumberWords.ZeroToNineteen[input / 100 - 1]}"
+            if (input < 999) return $"{NumberWords.ZeroToNineteen[input / 100 - 1]} {NumberWords.Hundred} {NumberToWords(input % 100)}";
+            if (input < 9999) return $"{NumberWords.ZeroToNineteen[input / 1000 - 1]} {NumberToWords(input % 1000)}";
             else throw new ArgumentOutOfRangeException("input", "Number to words input must be less than 1 billion.");
         }
 
