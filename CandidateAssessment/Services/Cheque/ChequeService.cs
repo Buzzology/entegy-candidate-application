@@ -37,7 +37,7 @@ namespace CandidateAssessment.Services.Cheque
             // TODO: ensure that when cents only is provided that the word only is appended as a suffix
             // TODO: ensure that pluralisations are used correctly e.g. one dollar, two dollars
 
-            resp.AmountInWords = amountInWordsResponse.AmountInWords;
+            resp.AmountInWords = amountInWordsResponse.AmountInWords.ToUpper();
             resp.Cheque = cheque;
             resp.Success = true;
             
