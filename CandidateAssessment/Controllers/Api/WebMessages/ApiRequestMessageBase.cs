@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CandidateAssessment.Services.Cheque
+namespace CandidateAssessment.Controllers.Api.WebMessages
 {
-    public class CheckService : ServiceBase, ICheckService
+    public class ApiMessageRequestBase : ApiMessageBase
     {
-
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CandidateAssessment.Models;
 
 namespace CandidateAssessment.Services.Cheque.ServiceMessages
 {
     public class ChequeCreateRequest : ServiceRequestBase
     {
         public ChequeCreateRequest(ApplicationDbContext db) : base(db) { }
+
+        public string Name { get; set; }
+
+        public decimal Amount { get; set; }
     }
 }

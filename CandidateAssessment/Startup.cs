@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CandidateAssessment.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using CandidateAssessment.Utilities;
 
 namespace CandidateAssessment
 {
@@ -25,6 +21,16 @@ namespace CandidateAssessment
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Setup configuration and services
+            StartupHelper.AddConfiguration(services, Configuration);
+            StartupHelper.AddServices(services);
+
+            // Add in memory db: https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio#register-the-database-context
+            services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("ChequesDb"));
+
+            // TODO: setup auto etc (JWT/Cognito
+
+            // Add controllers
             services.AddControllers();
         }
 

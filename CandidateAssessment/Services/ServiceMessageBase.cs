@@ -1,4 +1,5 @@
-﻿using CandidateAssessment.Utilities;
+﻿using CandidateAssessment.Models;
+using CandidateAssessment.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
