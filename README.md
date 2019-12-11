@@ -21,6 +21,9 @@ It was assumed that “AND” should not be included when concatenating numbers 
 If the solution were modified to include “AND” as a concatenator the output would have been as follows:
 
 > ONE THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS
+
+### Zero cents
+It was assumed that when there is a dollar amount with no cents value that the cheque writer should ouput the words "ZERO CENTS".  
  
 ## How to Use the Service
 The service offers a standard HTTP endpoint that can be accessed locally on port 44393. The amountToWords service is accessible via a GET request at the following url:
