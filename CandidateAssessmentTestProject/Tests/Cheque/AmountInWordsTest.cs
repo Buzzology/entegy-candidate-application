@@ -56,6 +56,66 @@ namespace CandidateAssessmentTestProject.Tests.Cheque
         }
 
 
+        [Fact]
+        public async Task VerifyInputOfZeroReturnsError()
+        {
+            await RunTest(async () => {
+
+                var amount = 0M;
+                var response = await ConvertAmountToWords(Client, amount);
+
+                Assert.NotNull(response);
+                Assert.False(response.Success);
+                Assert.True(response.Messages.Count == 1);
+                Assert.Equal("The field Amount must be between 0.01 and 999999999.", response.Messages[0].Text);
+
+                return true;
+            });
+        }
+
+
+        [Fact]
+        public async Task VerifyInputOf1BillionReturnsError()
+        {
+            await RunTest(async () => {
+
+                var amount = 999999999999M;
+                var response = await ConvertAmountToWords(Client, amount);
+
+                Assert.NotNull(response);
+                Assert.False(response.Success);
+                Assert.True(response.Messages.Count == 1);
+                Assert.Equal("The field Amount must be between 0.01 and 999999999.", response.Messages[0].Text);
+
+                return true;
+            });
+        }
+
+
+        [Fact]
+        public async Task VerifyInputInvalidReturnsError()
+        {
+            await RunTest(async () => {
+
+                var amount = "INVALID_AMOUNT";
+
+                // Invoke create action on controller
+                var httpResponse = await Client.PostAsync($"/cheques/amountInWords", new StringContentWrapper(new { amount}));
+                var stringResponse = await httpResponse.Content.ReadAsStringAsync();
+
+                // Check http response payload
+                var resp = JsonConvert.DeserializeObject<ApiMessageResponseBase>(stringResponse);
+
+                Assert.NotNull(resp);
+                Assert.False(resp.Success);
+                Assert.True(resp.Messages.Count == 1);
+                Assert.Equal($"Please ensure that amount is a valid decimal: ${amount}", resp.Messages[0].Text);
+
+                return true;
+            });
+        }
+
+
         /* Generic utility to verify that amount to words generics the correct sentence */
         internal static async Task<bool> VerifyAmountResponseEquals(HttpClient client, decimal amount, string expectedOutput)
         {
@@ -78,8 +138,6 @@ namespace CandidateAssessmentTestProject.Tests.Cheque
             var httpResponse = await client.PostAsync($"/cheques/amountInWords", new StringContentWrapper(GetDefaultAmountToWordsPayload(amount)));
             var stringResponse = await httpResponse.Content.ReadAsStringAsync();
 
-            if (!httpResponse.IsSuccessStatusCode) throw new HttpRequestException($"Http error occurred: ${httpResponse.ToString()}");
-
             // Check http response payload
             return JsonConvert.DeserializeObject<ApiMessageResponseBase>(stringResponse);
         }
@@ -89,7 +147,7 @@ namespace CandidateAssessmentTestProject.Tests.Cheque
         internal static ChequeAmountToWordsWebRequest GetDefaultAmountToWordsPayload(decimal amount)
         {
             return new ChequeAmountToWordsWebRequest {
-                Amount = amount,
+                Amount = amount.ToString(),
             };
         }
     }

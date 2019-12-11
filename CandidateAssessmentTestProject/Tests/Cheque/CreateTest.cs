@@ -24,7 +24,7 @@ namespace CandidateAssessmentTestProject.Tests.ChequeService
                 Assert.True(response.Success);
                 Assert.Equal(response.Data.cheque.name.Value, name);
                 Assert.True(response.Data.cheque.amount.Value == (double)amount);
-                Assert.Equal(response.Data.amountInWords.Value, "ONE DOLLAR ONE CENT");
+                Assert.Equal(response.Data.amountInWords.Value, "ONE DOLLAR AND ONE CENT");
 
                 return true;
             });
@@ -47,7 +47,7 @@ namespace CandidateAssessmentTestProject.Tests.ChequeService
 
                 Assert.Equal(response.Data.cheque.name.Value, name);
                 Assert.True(response.Data.cheque.amount.Value == (double) amount);
-                Assert.Equal(response.Data.amountInWords.Value, "forty nine dollars ninety five cents".ToUpper());
+                Assert.Equal(response.Data.amountInWords.Value, "FORTY-NINE DOLLARS AND NINETY-FIVE CENTS");
 
                 return true;
             });

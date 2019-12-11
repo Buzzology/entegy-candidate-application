@@ -2,6 +2,6 @@
 {
     public class ChequeAmountToWordsWebRequest : ApiMessageRequestBase
     {
-        public decimal Amount { get; set; }
+        public string Amount { get; set; }
     }
 }

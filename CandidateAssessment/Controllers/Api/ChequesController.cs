@@ -49,20 +49,27 @@ namespace CandidateAssessment.Controllers.Api
         [Route("amountinwords")]
         public async Task<IActionResult> AmountInWords(ChequeAmountToWordsWebRequest request)
         {
-            var serviceResp = await _chequeService.AmountInWords(
+            if(decimal.TryParse(request.Amount, out var decimalAmount))
+            {
+                var serviceResp = await _chequeService.AmountInWords(
                 new ChequeAmountInWordsRequest(Db) {
-                    Amount = request.Amount,
+                    Amount = decimalAmount,
                 });
 
-            if (serviceResp.Success)
-            {
-                Db.SaveChanges();
+                if (serviceResp.Success)
+                {
+                    Db.SaveChanges();
+                }
+
+                WebResponse.Messages.AddRange(serviceResp.Messages);
+                WebResponse.Data = new { serviceResp.AmountInWords };
+                WebResponse.Success = !WebResponse.Messages.Any(x => x.Type == Message.MessageType.Error);
             }
-
-            WebResponse.Messages.AddRange(serviceResp.Messages);
-            WebResponse.Data = new { serviceResp.AmountInWords };
-            WebResponse.Success = !WebResponse.Messages.Any(x => x.Type == Message.MessageType.Error);
-
+            else
+            {
+                WebResponse.Messages.Add(new Message($"Please ensure that amount is a valid decimal: ${request.Amount}", Message.MessageType.Error));
+            } 
+            
             return Ok(WebResponse);
         }
     }
