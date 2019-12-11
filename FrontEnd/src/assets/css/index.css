@@ -1,0 +1,75 @@
+.img-logo{
+    width: 75px;
+    height: 50px;
+}
+
+.font-consolas {
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
+
+.cheque-wrapper {
+    background-color: #FFF;
+    width: 100%;
+    max-height: 400px;
+    border: 1px solid #CCC;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.1);
+    position: relative;
+    background-image: url('../img/beanstalk.png');
+}
+
+.cheque-logo-wrapper {
+    text-align: left;
+    font-size: 75%;
+}
+
+.cheque-date-wrapper {
+    text-align: right;
+    border-bottom: 1px solid #CCC;
+}
+
+.cheque-pay-wrapper {
+    border-bottom: 1px solid #CCC;
+}
+
+.cheque-amount-wrapper {
+
+}
+
+.cheque-amount-number{
+    border: 2px solid #CCC;
+    padding: 4px;
+}
+
+.cheque-amount-words-wrapper {
+    border-bottom: 1px solid #CCC;
+}
+
+.cheque-code-wrapper {
+    text-align: center;
+    font-size: 140%;
+    opacity: 0.2;
+    font-weight: 100;
+}
+
+.cheque-from-wrapper {
+    text-transform: uppercase;
+}
+
+.cheque-signature {
+    width: 75px;
+    border-bottom: 1px solid #CCC;
+    position: absolute;
+    right: 24px;
+    bottom: -16px;
+}
+
+.cheque-not-negotiable {
+    text-align: center;
+    border: 2px solid #006bff87;
+    color: #006bff87;
+    padding: 5px 10px;
+    right: 25%;
+    top: 50%;
+    transform: rotate(-45deg);
+    position: absolute;
+}
