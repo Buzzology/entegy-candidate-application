@@ -1,9 +1,7 @@
 ﻿using CandidateAssessment;
 using CandidateAssessment.Controllers.Api.WebMessages;
 using CandidateAssessment.Controllers.Api.WebMessages.Cheque;
-using CandidateAssessment.Models;
 using Newtonsoft.Json;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
@@ -15,7 +13,26 @@ namespace CandidateAssessmentTestProject.Tests.ChequeService
         public CreateTest(CustomWebApplicationFactory<Startup> factory) : base(factory) { }
 
         [Fact]
-        public async Task CreateChequeIsSuccessful()
+        public async Task CreateOneDigitChequeIsSuccessful()
+        {
+            await RunTest(async () => {
+
+                var name = "john doe";
+                var amount = 1.01M;
+                var response = await CreateCheque(Client, name, amount);
+
+                Assert.True(response.Success);
+                Assert.Equal(response.Data.cheque.name.Value, name);
+                Assert.True(response.Data.cheque.amount.Value == (double)amount);
+                Assert.Equal(response.Data.amountInWords.Value, "ONE DOLLAR ONE CENT");
+
+                return true;
+            });
+        }
+
+
+        [Fact]
+        public async Task CreateTwoDigitChequeIsSuccessful()
         {
             await RunTest(async () => {
 
@@ -34,7 +51,7 @@ namespace CandidateAssessmentTestProject.Tests.ChequeService
 
                 return true;
             });
-        }
+        }        
 
 
         /* Generic create cheque utility */
