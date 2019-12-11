@@ -100,7 +100,7 @@ namespace CandidateAssessmentTestProject.Tests.Cheque
                 var amount = "INVALID_AMOUNT";
 
                 // Invoke create action on controller
-                var httpResponse = await Client.PostAsync($"/cheques/amountInWords", new StringContentWrapper(new { amount}));
+                var httpResponse = await Client.GetAsync($"/cheques/amountInWords?amount={amount}");
                 var stringResponse = await httpResponse.Content.ReadAsStringAsync();
 
                 // Check http response payload
@@ -135,7 +135,7 @@ namespace CandidateAssessmentTestProject.Tests.Cheque
         internal static async Task<ApiMessageResponseBase> ConvertAmountToWords(HttpClient client, decimal amount)
         {
             // Invoke create action on controller
-            var httpResponse = await client.PostAsync($"/cheques/amountInWords", new StringContentWrapper(GetDefaultAmountToWordsPayload(amount)));
+            var httpResponse = await client.GetAsync($"/cheques/amountInWords?amount={amount}");
             var stringResponse = await httpResponse.Content.ReadAsStringAsync();
 
             // Check http response payload
