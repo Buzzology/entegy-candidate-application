@@ -13,10 +13,12 @@ namespace CandidateAssessment.Utilities
             if (input > ChequeConfiguration.MaximumChequeAmount) throw new ArgumentException($"Input must be less than or equal to ${ChequeConfiguration.MaximumChequeAmount}: ${input}");
 
             // Recursively convert numbers to words
+            if (input == 0) return "";
             if (input < 20) return NumberWords.ZeroToNineteen[input];
-            if (input < 100) return $"{NumberWords.Tens[((int)input / 10) - 1]} {NumberToWords(input % 10)}";
-            if (input < 999) return $"{NumberWords.ZeroToNineteen[input / 100 - 1]} {NumberWords.Hundred} {NumberToWords(input % 100)}";
-            if (input < 9999) return $"{NumberWords.ZeroToNineteen[input / 1000 - 1]} {NumberToWords(input % 1000)}";
+            if (input < 100) return (NumberWords.Tens[((int)input / 10) - 1] + (input % 10 > 0 ? "-" + NumberToWords(input % 10) : string.Empty)).Trim();
+            if (input < 999) return ($"{NumberWords.ZeroToNineteen[input / 100]} {NumberWords.Hundred} {NumberToWords(input % 100)}").Trim();
+            if (input < 9999) return ($"{NumberWords.ZeroToNineteen[input / 1000]} {NumberWords.Thousand} {NumberToWords(input % 1000)}").Trim();
+            if (input < 99999) return $"{NumberToWords(input / 10000)} {NumberWords.Thousand} {NumberToWords(input % 10000)}").Trim();
             else throw new ArgumentOutOfRangeException("input", "Number to words input must be less than 1 billion.");
         }
 

@@ -6,5 +6,6 @@ namespace CandidateAssessment.Services.Cheque
     public interface IChequeService
     {
         Task<ChequeCreateResponse> Create(ChequeCreateRequest request);
+        Task<ChequeAmountInWordsResponse> AmountInWords(ChequeAmountInWordsRequest chequeAmountInWordsRequest);
     }
 }

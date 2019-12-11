@@ -42,5 +42,28 @@ namespace CandidateAssessment.Controllers.Api
 
             return Ok(WebResponse);
         }
+
+
+        [HttpPost]
+        [Produces("application/json")]
+        [Route("amountinwords")]
+        public async Task<IActionResult> AmountInWords(ChequeAmountToWordsWebRequest request)
+        {
+            var serviceResp = await _chequeService.AmountInWords(
+                new ChequeAmountInWordsRequest(Db) {
+                    Amount = request.Amount,
+                });
+
+            if (serviceResp.Success)
+            {
+                Db.SaveChanges();
+            }
+
+            WebResponse.Messages.AddRange(serviceResp.Messages);
+            WebResponse.Data = new { serviceResp.AmountInWords };
+            WebResponse.Success = !WebResponse.Messages.Any(x => x.Type == Message.MessageType.Error);
+
+            return Ok(WebResponse);
+        }
     }
 }
