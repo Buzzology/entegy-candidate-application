@@ -45,6 +45,9 @@ namespace CandidateAssessment
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(b => b.WithOrigins("http://localhost:3000", "https://localhost:3000")
+                              .AllowAnyHeader()
+                              .AllowAnyMethod());
 
             app.UseAuthorization();
 

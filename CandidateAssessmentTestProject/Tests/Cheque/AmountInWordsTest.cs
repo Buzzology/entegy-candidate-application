@@ -20,7 +20,9 @@ namespace CandidateAssessmentTestProject.Tests.Cheque
                 Task[] wordTests = {
 
                     // Additional edge case tests
-                    VerifyAmountResponseEquals(Client, 25, "TWENTY-FIVE DOLLARS AND ZERO CENTS"),                    
+                    VerifyAmountResponseEquals(Client, 25, "TWENTY-FIVE DOLLARS AND ZERO CENTS"),
+                    VerifyAmountResponseEquals(Client, 14, "FOURTEEN DOLLARS AND ZERO CENTS"),
+                    VerifyAmountResponseEquals(Client, 19.14M, "NINETEEN DOLLARS AND FOURTEEN CENTS"),
                     VerifyAmountResponseEquals(Client, 2234.56M, "TWO THOUSAND TWO HUNDRED THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS"),
                     VerifyAmountResponseEquals(Client, 2234.01M, "TWO THOUSAND TWO HUNDRED THIRTY-FOUR DOLLARS AND ONE CENT"),
                     VerifyAmountResponseEquals(Client, 9984.00M, "NINE THOUSAND NINE HUNDRED EIGHTY-FOUR DOLLARS AND ZERO CENTS"),
@@ -39,6 +41,7 @@ namespace CandidateAssessmentTestProject.Tests.Cheque
                     VerifyAmountResponseEquals(Client, 945290004.01M, "NINE HUNDRED FORTY-FIVE MILLION TWO HUNDRED NINETY THOUSAND FOUR DOLLARS AND ONE CENT"),
                     VerifyAmountResponseEquals(Client, 945290004.99M, "NINE HUNDRED FORTY-FIVE MILLION TWO HUNDRED NINETY THOUSAND FOUR DOLLARS AND NINETY-NINE CENTS"),
                     VerifyAmountResponseEquals(Client, 100000000.00M, "ONE HUNDRED MILLION DOLLARS AND ZERO CENTS"),
+                    VerifyAmountResponseEquals(Client, 49999999.5M, "FORTY-NINE MILLION NINE HUNDRED NINETY-NINE THOUSAND NINE HUNDRED NINETY-NINE DOLLARS AND FIFTY CENTS"),
 
                     // Entegy test cases
                     VerifyAmountResponseEquals(Client, 1234.56M, "ONE THOUSAND TWO HUNDRED THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS"),
@@ -79,7 +82,7 @@ namespace CandidateAssessmentTestProject.Tests.Cheque
         {
             await RunTest(async () => {
 
-                var amount = 999999999999M;
+                var amount = -9999999M;
                 var response = await ConvertAmountToWords(Client, amount);
 
                 Assert.NotNull(response);
