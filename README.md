@@ -93,3 +93,17 @@ If additional services were to be added to this API it would likely merit the in
 
 ### Logging
 A proper logging implementation would be required if the service were to be used in earnest. RayGun would potentially serve as a suitable candidate.
+
+## User Interface
+A simple user interface was added to demonstrate the amount to words functionality:
+![Cheque](https://lh3.googleusercontent.com/Kp1bXiOgYdr9N4R8hMR_m1Lb76axmhWmlsSwL7mz7DJE0ux2GcU2bGfOlSihcvKCzcAxJmn9NMDgZj_8sd3I8XgOiONkTPiYlei9xQy-K8yvA8GaVpzsZxPnBQFjK1W7_gstPrqK)
+
+![Create Cheque](https://lh6.googleusercontent.com/s_KhCm14TwiKLh7hPT9peexS-RSYqvm8hnRe9_vtQjSquVr_auX8GMITbUAznR3L8RmCnGdNHNDPdULdf11kTreVsL37bkWL0ZJif6sx67oHMi6wIKvbgE28Bx-ZvzBkhMc00dKi)
+
+### Installation and Setup
+1) Retrieve repository: git clone https://github.com/Buzzology/entegy-candidate-application.git
+2) Open the CadidateAssessment solution and start the web server by pressing ctrl+f5
+3) Open the FrontEnd folder in visual code
+4) Run npm install
+5) Run npm start
+
