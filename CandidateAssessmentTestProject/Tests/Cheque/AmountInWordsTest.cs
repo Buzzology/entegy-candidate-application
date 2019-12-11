@@ -31,8 +31,16 @@ namespace CandidateAssessmentTestProject.Tests.Cheque
                     VerifyAmountResponseEquals(Client, 99004.01M, "NINETY-NINE THOUSAND FOUR DOLLARS AND ONE CENT"),
                     VerifyAmountResponseEquals(Client, 14000.01M, "FOURTEEN THOUSAND DOLLARS AND ONE CENT"),
                     VerifyAmountResponseEquals(Client, 99004.01M, "NINETY-NINE THOUSAND FOUR DOLLARS AND ONE CENT"),
+                    VerifyAmountResponseEquals(Client, 99044.01M, "NINETY-NINE THOUSAND FORTY-FOUR DOLLARS AND ONE CENT"),
+                    VerifyAmountResponseEquals(Client, 100004.01M, "ONE HUNDRED THOUSAND FOUR DOLLARS AND ONE CENT"),
+                    VerifyAmountResponseEquals(Client, 290004.40M, "TWO HUNDRED NINETY THOUSAND FOUR DOLLARS AND FORTY CENTS"),
+                    VerifyAmountResponseEquals(Client, 291124.30M, "TWO HUNDRED NINETY-ONE THOUSAND ONE HUNDRED TWENTY-FOUR DOLLARS AND THIRTY CENTS"),
+                    VerifyAmountResponseEquals(Client, 45290004.01M, "FORTY-FIVE MILLION TWO HUNDRED NINETY THOUSAND FOUR DOLLARS AND ONE CENT"),
+                    VerifyAmountResponseEquals(Client, 945290004.01M, "NINE HUNDRED FORTY-FIVE MILLION TWO HUNDRED NINETY THOUSAND FOUR DOLLARS AND ONE CENT"),
+                    VerifyAmountResponseEquals(Client, 945290004.99M, "NINE HUNDRED FORTY-FIVE MILLION TWO HUNDRED NINETY THOUSAND FOUR DOLLARS AND NINETY-NINE CENTS"),
+                    VerifyAmountResponseEquals(Client, 100000000.00M, "ONE HUNDRED MILLION DOLLARS AND ZERO CENTS"),
 
-                    // Provided test cases
+                    // Entegy test cases
                     VerifyAmountResponseEquals(Client, 1234.56M, "ONE THOUSAND TWO HUNDRED THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS"),
                     VerifyAmountResponseEquals(Client, 0.22M, "TWENTY-TWO CENTS ONLY"),
                     VerifyAmountResponseEquals(Client, 102.03M, "ONE HUNDRED TWO DOLLARS AND THREE CENTS"),

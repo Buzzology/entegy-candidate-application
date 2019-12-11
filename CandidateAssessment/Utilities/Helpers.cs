@@ -16,9 +16,9 @@ namespace CandidateAssessment.Utilities
             if (input == 0) return "";
             if (input < 20) return NumberWords.ZeroToNineteen[input];
             if (input < 100) return (NumberWords.Tens[((int)input / 10) - 1] + (input % 10 > 0 ? "-" + NumberToWords(input % 10) : string.Empty)).Trim();
-            if (input < 999) return ($"{NumberWords.ZeroToNineteen[input / 100]} {NumberWords.Hundred} {NumberToWords(input % 100)}").Trim();
-            if (input < 9999) return ($"{NumberWords.ZeroToNineteen[input / 1000]} {NumberWords.Thousand} {NumberToWords(input % 1000)}").Trim();
-            if (input < 99999) return $"{NumberToWords(input / 10000)} {NumberWords.Thousand} {NumberToWords(input % 10000)}").Trim();
+            if (input < 999) return $"{NumberWords.ZeroToNineteen[input / 100]} {NumberWords.Hundred} {NumberToWords(input % 100)}".Trim();
+            if (input < 999999) return $"{NumberToWords((int) input / 1000)} {NumberWords.Thousand} {NumberToWords(input % 1000)}".Trim();
+            if (input < 999999999) return $"{NumberToWords((int) input / 1000000)} {NumberWords.Million} {NumberToWords(input % 1000000)}".Trim();
             else throw new ArgumentOutOfRangeException("input", "Number to words input must be less than 1 billion.");
         }
 
