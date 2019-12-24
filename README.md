@@ -1,4 +1,4 @@
-# Entegy Candidate Application
+# Entegy Candidate Application (Successful)
 
 ## Design Choice Assumptions
 ### Number to Words Logic
